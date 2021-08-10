@@ -13,7 +13,7 @@ app.get('/dudes', (req, res) => {
 
 });
 
-app.get('/dudes/:1', (req, res) => {
+app.get('/dudes/:id', (req, res) => {
     const dudeId = Number(req.params.id);
     const dude = data.find((item) => item.id === req.params.id);
     res.json(dude);
