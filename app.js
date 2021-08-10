@@ -2,7 +2,6 @@ console.log('hello');
 
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
 const data = require('./data.js');
 
 app.get('/', (req, res) => {
@@ -11,9 +10,14 @@ app.get('/', (req, res) => {
 
 app.get('/dudes', (req, res) => {
     res.json(data);
+
 });
 
-app.listen(port, () => {
-    console.log(`example app listening at http://localhost:${port}`);
-});
+app.get('/dudes/:1', (req, res) => {
+    const dudeId = Number(req.params.id);
+    const dude = data.find((item) => item.id === req.params.id);
+    console.log(dude);
+    res.json(dude);
+})
 
+module.exports = app;
